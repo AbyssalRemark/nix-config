@@ -15,6 +15,10 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  #for Cinamon compatability
+  #TODO: this is needed to fix a Cinnamon error related to nix-community/home-manager#5102
+  xdg.mime.enable = false;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
