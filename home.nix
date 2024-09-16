@@ -5,6 +5,7 @@
   # manage.
   home.username = "final";
   home.homeDirectory = "/home/final";
+  nixpkgs.config.allowUnfree = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -24,7 +25,12 @@
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    pkgs.hello
+    #pkgs.hello
+
+    #to run graphical aplications from nix land
+    pkgs.nixgl.auto.nixGLDefault
+    pkgs.jami
+    pkgs.iskscape
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -48,7 +54,7 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 	
-    "hello_dom".text = ''something that I want to show up'';    
+    #"hello_dom".text = ''something that I want to show up'';    
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
