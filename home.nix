@@ -3,6 +3,10 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
+  # To update:
+  # home-manager switch --flake . --impure 
+  # flake because its not default, impure because of nixGL
+
   home.username = "final";
   home.homeDirectory = "/home/final";
   nixpkgs.config.allowUnfree = true;
@@ -30,7 +34,7 @@
     #to run graphical aplications from nix land
     pkgs.nixgl.auto.nixGLDefault
     pkgs.jami
-    pkgs.iskscape
+    pkgs.inkscape
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
