@@ -3,16 +3,16 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl.url = "github:nix-community/nixGL";
 
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }:
+  outputs = { nixpkgs, home-manager, nixgl, self, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -21,6 +21,9 @@
       };
       #pkgs = nixpkgs.legacyPackages.${system};
     in {
+      packages.${system}.default = pkgs.writeShellScriptBin "deploy" ''
+      ${pkgs.lib.getExe home-manager.packages.${system}.home-manager} switch --flake ${self} --impure
+      '' ;
       homeConfigurations."final" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
